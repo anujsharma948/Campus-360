@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Campus360 - Smart Student Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" data-page="dashboard">
+          <span class="brandmark">◆</span>
+          <span>
+            Campus<span class="purple">360</span>
+            <small>STUDENT SPACE</small>
+          </span>
+        </a>
+
+        <p class="nav-label">WORKSPACE</p>
+        <nav id="nav">
+          <button class="navitem active" data-page="dashboard">⌂ <span>Overview</span></button>
+          <button class="navitem" data-page="academics">▤ <span>Academics</span></button>
+          <button class="navitem" data-page="attendance">◷ <span>Attendance</span></button>
+          <button class="navitem" data-page="results">▥ <span>Results & Grades</span></button>
+          <button class="navitem" data-page="timetable">▦ <span>Timetable</span></button>
+          <button class="navitem" data-page="placements">↗ <span>Career & Placements</span></button>
+          <button class="navitem" data-page="skills">✳ <span>Skills</span></button>
+          <button class="navitem" data-page="events">✦ <span>Campus Events</span></button>
+          <button class="navitem" data-page="notices">◉ <span>Notices</span></button>
+        </nav>
+
+        <div class="sidebarbottom">
+          <div class="helpbox">
+            <b>Need a hand?</b>
+            <p>Ask the Campus360 AI assistant about your campus.</p>
+            <button class="linkbtn" id="sideAI">Ask AI assistant ↗</button>
+          </div>
+
+          <button class="navitem" data-page="profile">◎ <span>My Profile</span></button>
+
+          <div class="user">
+            <div class="avatar">AS</div>
+            <div>
+              <b>Anuj Sharma</b>
+              <small>MCA · Semester 3</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <button class="iconbtn mobile" id="menuBtn">☰</button>
+          <div class="crumb">Workspace <span>/</span> <b id="crumb">Overview</b></div>
+          <div class="topright">
+            <label class="search">
+              ⌕
+              <input id="search" placeholder="Search campus...">
+              <kbd>Ctrl K</kbd>
+            </label>
+            <button class="iconbtn" id="noticeBtn">♧<i></i></button>
+            <div class="avatar">AS</div>
+          </div>
+        </header>
+
+        <section id="content" class="content"></section>
+
+        <footer>
+          <b>Campus360</b>
+          <span>Student success, in one place.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div id="toasts" class="toasts"></div>
+
+    <div class="launcherwrap">
+      <span class="hint" id="hint">Your campus, explained by AI</span>
+      <button class="launcher" id="launcher">✦ <span>Ask Campus AI</span></button>
+    </div>
+
+    <section class="chat" id="chat" aria-hidden="true">
+      <header class="chathead">
+        <div class="aiicon">✦</div>
+        <div class="chatbrand">
+          <b>Campus360 AI</b>
+          <small><i></i> Ready to help</small>
+        </div>
+        <div class="chatcontrols">
+          <button id="settingsBtn" title="AI settings">⚙</button>
+          <button id="clearChat" title="Clear chat">↺</button>
+          <button id="closeChat" title="Close">×</button>
+        </div>
+      </header>
+
+      <div class="keynotice" id="keyNotice">
+        <div>
+          <b>Connect your AI key</b>
+          <p>Your key stays in this tab's memory. Direct browser API use exposes it while active.</p>
+        </div>
+        <button class="smallbtn" id="connectBtn">Set up</button>
+      </div>
+
+      <div class="messages" id="messages">
+        <div class="welcome">
+          <div class="welcomespark">✦</div>
+          <p class="eyebrow">YOUR CAMPUS COPILOT</p>
+          <h3>Hi Anuj, what can I help you with?</h3>
+          <p>I can explain the sample campus data, help plan study time, and guide you around Campus360.</p>
+        </div>
+
+        <div class="suggestions">
+          <button data-prompt="Analyse my attendance and tell me which subject needs the most attention.">Check my attendance ↗</button>
+          <button data-prompt="Create a realistic 7-day study plan based on my subjects and skills.">Build a study plan ↗</button>
+          <button data-prompt="Review my placement readiness and suggest the top three things to improve.">Improve placement readiness ↗</button>
+          <button data-prompt="Summarise the upcoming campus events and latest notices.">Campus updates ↗</button>
+        </div>
+      </div>
+
+      <div class="typing" id="typing" hidden>
+        <span></span>
+        <span></span>
+        <span></span>
+        Campus AI is thinking…
+      </div>
+
+      <form id="chatForm" class="composer">
+        <textarea id="chatInput" rows="1" placeholder="Ask anything about Campus360..."></textarea>
+        <div>
+          <small>AI can make mistakes. Verify important information.</small>
+          <button id="sendBtn" type="submit">↑</button>
+        </div>
+      </form>
+
+      <p class="chatfoot">Powered by Gemini · Sample student data</p>
+    </section>
+
+    <div class="modalshade" id="modalShade">
+      <section class="modal">
+        <button class="xclose" id="xclose">×</button>
+        <div class="welcomespark">✦</div>
+        <p class="eyebrow">AI CONNECTION</p>
+        <h2>Connect Campus360 AI</h2>
+        <p class="muted">
+          Enter a Gemini API key for live AI responses. This page calls Google Gemini directly from your
+          browser and does not save the key. Anyone with access to browser developer tools while the key is
+          active may be able to inspect it.
+        </p>
+
+        <label for="apiKey">Gemini API key</label>
+        <input id="apiKey" type="password" placeholder="AIza..." autocomplete="off">
+
+        <label for="model">Model name</label>
+        <input id="model" value="gemini-3.8-flash" autocomplete="off">
+
+        <div class="warning">
+          ⓘ Use a model with a free tier and check Google AI Studio quotas. Free-tier limits apply. Do not
+          publish this version with your personal key.
+        </div>
+
+        <div class="modalactions">
+          <button class="secondary" id="cancelKey">Cancel</button>
+          <button class="primary" id="saveKey">Connect AI</button>
+        </div>
+
+        <p id="keyError" class="error" hidden></p>
+        <small class="muted">
+          Manage keys:
+          <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Gemini API keys ↗</a>
+        </small>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
